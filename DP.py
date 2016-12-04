@@ -1,18 +1,18 @@
 # coding: utf-8
 
 from flask import Flask
-from flask.ext.migrate import Migrate
-from flask.ext.migrate import MigrateCommand
-from flask.ext.script import Manager
-from flask.ext.script import Server
-from flask.ext.script import Shell
+from flask_migrate import Migrate
+from flask_migrate import MigrateCommand
+from flask_script import Manager
+from flask_script import Server
+from flask_script import Shell
 
 from models import db
-from models.comment import Comment
 from models.comment import CinemaEnvironment
 from models.comment import CinemaOther
 from models.comment import CinemaQuality
 from models.comment import CinemaService
+from models.comment import Comment
 from models.comment import RestaurantEnvironment
 from models.comment import RestaurantOther
 from models.comment import RestaurantQuality
@@ -20,6 +20,7 @@ from models.comment import RestaurantService
 from models.role import Role
 from models.store import Store
 from models.user import User
+
 
 __author__ = 'Jux.Liu'
 

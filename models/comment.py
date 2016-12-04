@@ -1,5 +1,6 @@
 # coding: utf-8
 from models import BaseModel, db
+from utils.time_funcs import utctime
 
 __author__ = 'Jux.Liu'
 
@@ -11,6 +12,8 @@ class Comment(db.Model, BaseModel):
     store_id = db.Column(db.Integer, db.ForeignKey('store.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     price = db.Column(db.Float, nullable=False)
+    created_time = db.Column(db.Integer, nullable=False, default=utctime())
+    updated_time = db.Column(db.Integer, nullable=False, default=utctime())
     cinema_service = db.relationship('CinemaService', backref='comment', lazy='dynamic')
     cinema_quality = db.relationship('CinemaQuality', backref='comment', lazy='dynamic')
     cinema_environment = db.relationship('CinemaEnvironment', backref='comment', lazy='dynamic')

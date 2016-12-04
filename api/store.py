@@ -1,5 +1,5 @@
 # coding: utf-8
-from ..utils.decorators import admin_required, login_required
+from utils.decorators import admin_required, login_required
 from . import api
 
 __author__ = 'Jux.Liu'

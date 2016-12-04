@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block content %}
+    <input id="register-input-email">
+    <input id="register-input-username">
+    <input id="register-input-password">
+    <button id="register-button-ok">ok</button>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('#register-button-ok').on('click', function () {
+                let email = $('#register-input-email').val()
+                let username = $("#register-input-username").val()
+                let password = $("#register-input-password").val()
+
+                let form = {
+                    email: email,
+                    username: username,
+                    password: password
+                }
+
+                let url = '{{ url_for("api.user_register") }}'
+                ping_form.send(
+                    url,
+                    form,
+                    function (r) {
+                        log(r)
+                    })
+            })
+        })
+    </script>
+{% endblock %}

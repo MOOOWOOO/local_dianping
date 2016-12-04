@@ -2,6 +2,7 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from models import BaseModel, db
+from utils.time_funcs import utctime
 
 __author__ = 'Jux.Liu'
 
@@ -17,6 +18,8 @@ class User(db.Model, BaseModel):
     stores = db.relationship('Store', backref='author', lazy='dynamic')
     comments = db.relationship('Comment', backref='author', lazy='dynamic')
     roles = db.relationship('UserRole', backref='user', lazy='dynamic')
+    created_time = db.Column(db.Integer, nullable=False, default=utctime())
+    updated_time = db.Column(db.Integer, nullable=False, default=utctime())
 
     @property
     def password(self):

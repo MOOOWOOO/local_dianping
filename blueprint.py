@@ -3,19 +3,20 @@
 __author__ = 'Jux.Liu'
 
 INSTALLED_MODULES = [
-    ('apis', 'api', '/api'),
     ('routes', 'main', '/'),
+    ('api', 'api', '/api'),
     ('routes', 'store', '/')
 ]
 
 
 def register_blueprint(app):
     from importlib import import_module
-    for module, bp, prefix in INSTALLED_MODULES:
-        m = import_module(module)
+    for folder, module, prefix in INSTALLED_MODULES:
+        m = import_module(folder)
         print(m)
-        if hasattr(m, bp):
-            bp = getattr(m, bp)
+        print(module)
+        if hasattr(m, module):
+            bp = getattr(m, module)
             if prefix.strip() == '/':
                 # no prefix
                 app.register_blueprint(bp)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="//cdn.bootcss.com/pure/0.6.0/pure-min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ping_basic.css') }}">
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    {% block script %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/ping_api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ping_form.js') }}"></script>
+</head>
+<body>
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <a href="/" class="pure-menu-link pure-menu-heading">DP</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected"><a href="/" class="pure-menu-link" id="menu-index">首页</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link" id="menu-store-list">店铺列表</a></li>
+        {% if current_user is sameas none %}
+            <li class="pure-menu-item"><a href="/login" class="pure-menu-link" id="menu-login">登录</a></li>
+            <li class="pure-menu-item"><a href="/register" class="pure-menu-link" id="menu-register">注册</a></li>
+        {% else %}
+            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                <a href="#" id="menu" class="pure-menu-link">{{ current_user.username }}</a>
+{#                <a href="#" id="menu" class="pure-menu-link">aaa</a>#}
+                <ul class="pure-menu-children">
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link" id="menu-profile">个人资料</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link" id="menu-logout">退出</a></li>
+                </ul>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
+{% block content %}{% endblock %}
+</body>
+</html>
