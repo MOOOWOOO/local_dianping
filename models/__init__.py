@@ -24,6 +24,21 @@ class BaseModel(object):
         properties = ('{0} = {1}'.format(k, v) for k, v in self.__dict__.items())
         return '<{0}: \n  {1}\n>'.format(class_name, '\n  '.join(properties))
 
+    @classmethod
+    def new(cls, form):
+        m = cls(form)
+        m.save()
+        return m
+
+    @classmethod
+    def get(cls, id):
+        m = cls.query.get(id)
+        return m
+
+    @classmethod
+    def all(cls):
+        return cls.query.all()
+
     @staticmethod
     def exists(**kwargs):
         return db.session.query(db.exists().where(kwargs)).scalar()
